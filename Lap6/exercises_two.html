@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Business - Million Dollar Home Listings</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background-color: #e9ecef;
+        border-bottom: 1px solid #dee2e6;
+        padding: 0.5rem 1rem;
+      }
+
+      .navbar-brand {
+        font-weight: 600;
+        color: #495057 !important;
+      }
+
+      .navbar-nav .nav-link {
+        color: #6c757d !important;
+        font-size: 14px;
+        padding: 0.5rem 1rem;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #495057 !important;
+      }
+
+      .navbar-nav .nav-link.active {
+        color: #495057 !important;
+        font-weight: 500;
+      }
+
+      .auth-links {
+        font-size: 14px;
+      }
+
+      .auth-links a {
+        color: #6c757d;
+        text-decoration: none;
+        margin-left: 15px;
+      }
+
+      .auth-links a:hover {
+        color: #495057;
+      }
+
+      .page-header {
+        background-color: #e9ecef;
+        padding: 1rem 0;
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .page-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #495057;
+        margin: 0;
+      }
+
+      .breadcrumb-text {
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .listings-container {
+        padding: 2rem 0;
+      }
+
+      .listing-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+      }
+
+      .listing-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .listing-image {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .listing-image-1 {
+        background-image: url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop");
+      }
+
+      .listing-image-2 {
+        background-image: url("https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop");
+      }
+
+      .listing-image-3 {
+        background-image: url("https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop");
+      }
+
+      .listing-image-4 {
+        background-image: url("https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&h=300&fit=crop");
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
+
+      .listing-details {
+        padding: 1.5rem;
+      }
+
+      .listing-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.5rem;
+      }
+
+      .listing-price {
+        font-size: 16px;
+        color: #28a745;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .listing-specs {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      .listing-specs span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .listing-description {
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .navbar-nav {
+          margin-top: 1rem;
+        }
+
+        .auth-links {
+          margin-top: 1rem;
+        }
+
+        .auth-links a {
+          margin-left: 0;
+          margin-right: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">House Business</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Messages</a>
+            </li>
+          </ul>
+          <a style="color: blue; text-decoration: none" href="./index.html"
+            >Register</a
+          >
+          <div class="auth-links">
+            <a href="#"><i class="fas fa-user"></i> Sign Up</a>
+            <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">Million Dollar Home Listings</h1>
+        <p class="breadcrumb-text">Contest</p>
+      </div>
+    </div>
+
+    <!-- Listings Content -->
+    <div class="listings-container">
+      <div class="container">
+        <div class="row">
+          <!-- Listing 1 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="listing-card">
+              <div class="listing-image listing-image-1">
+                <div class="image-overlay">
+                  <i class="fas fa-images"></i> 12
+                </div>
+              </div>
+              <div class="listing-details">
+                <h3 class="listing-title">Media heading</h3>
+                <div class="listing-price">$1,250,000</div>
+                <div class="listing-specs">
+                  <span><i class="fas fa-bed"></i> 4 beds</span>
+                  <span><i class="fas fa-bath"></i> 3 baths</span>
+                  <span><i class="fas fa-ruler-combined"></i> 2,800 SqFt</span>
+                  <span><i class="fas fa-car"></i> 2 cars</span>
+                </div>
+                <p class="listing-description">Content of media heading</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 2 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="listing-card">
+              <div class="listing-image listing-image-2">
+                <div class="image-overlay">
+                  <i class="fas fa-images"></i> 18
+                </div>
+              </div>
+              <div class="listing-details">
+                <h3 class="listing-title">Media heading</h3>
+                <div class="listing-price">$1,875,000</div>
+                <div class="listing-specs">
+                  <span><i class="fas fa-bed"></i> 5 beds</span>
+                  <span><i class="fas fa-bath"></i> 4 baths</span>
+                  <span><i class="fas fa-ruler-combined"></i> 3,200 SqFt</span>
+                  <span><i class="fas fa-car"></i> 3 cars</span>
+                </div>
+                <p class="listing-description">Content of media heading</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 3 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="listing-card">
+              <div class="listing-image listing-image-3">
+                <div class="image-overlay">
+                  <i class="fas fa-images"></i> 15
+                </div>
+              </div>
+              <div class="listing-details">
+                <h3 class="listing-title">Media heading</h3>
+                <div class="listing-price">$1,650,000</div>
+                <div class="listing-specs">
+                  <span><i class="fas fa-bed"></i> 4 beds</span>
+                  <span><i class="fas fa-bath"></i> 3 baths</span>
+                  <span><i class="fas fa-ruler-combined"></i> 2,950 SqFt</span>
+                  <span><i class="fas fa-car"></i> 2 cars</span>
+                </div>
+                <p class="listing-description">Content of media heading</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 4 -->
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div class="listing-card">
+              <div class="listing-image listing-image-4">
+                <div class="image-overlay">
+                  <i class="fas fa-images"></i> 22
+                </div>
+              </div>
+              <div class="listing-details">
+                <h3 class="listing-title">Media heading</h3>
+                <div class="listing-price">$2,100,000</div>
+                <div class="listing-specs">
+                  <span><i class="fas fa-bed"></i> 6 beds</span>
+                  <span><i class="fas fa-bath"></i> 5 baths</span>
+                  <span><i class="fas fa-ruler-combined"></i> 4,200 SqFt</span>
+                  <span><i class="fas fa-car"></i> 3 cars</span>
+                </div>
+                <p class="listing-description">Content of media heading</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-4">
+          <button class="btn btn-outline-primary btn-lg">
+            Load More Listings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Add some interactivity
+      document.querySelectorAll(".listing-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          const title = this.querySelector(".listing-title").textContent;
+          const price = this.querySelector(".listing-price").textContent;
+          alert(
+            `You clicked on: ${title}\nPrice: ${price}\n\nThis would typically open a detailed property view.`
+          );
+        });
+      });
+
+      // Load more functionality
+      document
+        .querySelector(".btn-outline-primary")
+        .addEventListener("click", function () {
+          this.innerHTML =
+            '<span class="spinner-border spinner-border-sm me-2"></span>Loading...';
+
+          setTimeout(() => {
+            this.textContent = "Load More Listings";
+            // Here you would typically load more listings from an API
+            alert("More listings would be loaded from the server!");
+          }, 1500);
+        });
+
+      // Search functionality (if you want to add a search bar later)
+      function filterListings(searchTerm) {
+        const listings = document.querySelectorAll(".listing-card");
+        listings.forEach((listing) => {
+          const title = listing
+            .querySelector(".listing-title")
+            .textContent.toLowerCase();
+          const description = listing
+            .querySelector(".listing-description")
+            .textContent.toLowerCase();
+
+          if (
+            title.includes(searchTerm.toLowerCase()) ||
+            description.includes(searchTerm.toLowerCase())
+          ) {
+            listing.style.display = "block";
+          } else {
+            listing.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

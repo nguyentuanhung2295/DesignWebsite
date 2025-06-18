@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #4a4a4a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .registration-card {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .card-header {
+        background-color: #e8e8e8;
+        border-bottom: 1px solid #ddd;
+        padding: 20px;
+      }
+
+      .card-header h4 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .card-body {
+        padding: 30px;
+      }
+
+      .form-label {
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .form-control {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+
+      .form-control:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.2);
+      }
+
+      .btn-register {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+        color: white;
+        padding: 15px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+      }
+
+      .btn-register:hover {
+        background-color: #46b8da;
+        border-color: #46b8da;
+        color: white;
+      }
+
+      .btn-register:active,
+      .btn-register:focus {
+        background-color: #31b0d5;
+        border-color: #31b0d5;
+        box-shadow: 0 0 0 0.25rem rgba(91, 192, 222, 0.5);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="registration-card">
+      <div
+        class="card-header"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h4>User Registration</h4>
+        <a
+          style="color: blue; text-decoration: none"
+          href="./exercises_two.html"
+          >House Business</a
+        >
+      </div>
+
+      <div class="card-body">
+        <form id="registrationForm" novalidate>
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="First name"
+              required
+            />
+            <div class="invalid-feedback">
+              Please provide a valid first name.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Last name"
+              required
+            />
+            <div class="invalid-feedback">
+              Please provide a valid last name.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email address"
+              required
+            />
+            <div class="invalid-feedback">
+              Please provide a valid email address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="Input password"
+              required
+            />
+            <div class="invalid-feedback">
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="confirmation" class="form-label">Confirmation</label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirmation"
+              name="confirmation"
+              placeholder="Input confirm"
+              required
+            />
+            <div class="invalid-feedback">Passwords do not match.</div>
+          </div>
+
+          <button type="submit" class="btn btn-register">Register</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const form = this;
+          const formData = {
+            firstName: document.getElementById("firstName").value.trim(),
+            lastName: document.getElementById("lastName").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("password").value,
+            confirmation: document.getElementById("confirmation").value,
+          };
+
+          let isValid = true;
+
+          // Reset previous validation states
+          form.classList.remove("was-validated");
+          const inputs = form.querySelectorAll(".form-control");
+          inputs.forEach((input) => {
+            input.classList.remove("is-invalid", "is-valid");
+          });
+
+          // Validate each field
+          if (!formData.firstName) {
+            document.getElementById("firstName").classList.add("is-invalid");
+            isValid = false;
+          } else {
+            document.getElementById("firstName").classList.add("is-valid");
+          }
+
+          if (!formData.lastName) {
+            document.getElementById("lastName").classList.add("is-invalid");
+            isValid = false;
+          } else {
+            document.getElementById("lastName").classList.add("is-valid");
+          }
+
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!formData.email || !emailRegex.test(formData.email)) {
+            document.getElementById("email").classList.add("is-invalid");
+            isValid = false;
+          } else {
+            document.getElementById("email").classList.add("is-valid");
+          }
+
+          // Password validation
+          if (formData.password.length < 6) {
+            document.getElementById("password").classList.add("is-invalid");
+            isValid = false;
+          } else {
+            document.getElementById("password").classList.add("is-valid");
+          }
+
+          // Password confirmation validation
+          if (formData.password !== formData.confirmation) {
+            document.getElementById("confirmation").classList.add("is-invalid");
+            isValid = false;
+          } else if (formData.confirmation) {
+            document.getElementById("confirmation").classList.add("is-valid");
+          }
+
+          if (isValid) {
+            // Show success message using Bootstrap alert
+            const alertDiv = document.createElement("div");
+            alertDiv.className =
+              "alert alert-success alert-dismissible fade show mt-3";
+            alertDiv.innerHTML = `
+                    <strong>Registration Successful!</strong><br>
+                    Welcome, ${formData.firstName} ${formData.lastName}!<br>
+                    Email: ${formData.email}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+
+            form.parentNode.insertBefore(alertDiv, form.nextSibling);
+
+            // Reset form
+            form.reset();
+            inputs.forEach((input) => {
+              input.classList.remove("is-invalid", "is-valid");
+            });
+
+            // Auto-dismiss alert after 5 seconds
+            setTimeout(() => {
+              if (alertDiv.parentNode) {
+                alertDiv.remove();
+              }
+            }, 5000);
+          }
+        });
+
+      // Real-time validation feedback
+      const inputs = document.querySelectorAll(".form-control");
+      inputs.forEach((input) => {
+        input.addEventListener("blur", function () {
+          if (this.value.trim() !== "") {
+            if (this.type === "email") {
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (emailRegex.test(this.value)) {
+                this.classList.remove("is-invalid");
+                this.classList.add("is-valid");
+              }
+            } else if (this.id === "password") {
+              if (this.value.length >= 6) {
+                this.classList.remove("is-invalid");
+                this.classList.add("is-valid");
+              }
+            } else if (this.id === "confirmation") {
+              const password = document.getElementById("password").value;
+              if (this.value === password && password.length >= 6) {
+                this.classList.remove("is-invalid");
+                this.classList.add("is-valid");
+              }
+            } else {
+              this.classList.remove("is-invalid");
+              this.classList.add("is-valid");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
