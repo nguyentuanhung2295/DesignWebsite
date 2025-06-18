@@ -1,0 +1,160 @@
+/* Reset và font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Toàn bộ trang */
+body {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Container chung */
+.login__container,
+.signup__container,
+.welcome__container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Tiêu đề */
+.login__container h1,
+.signup__container h1,
+.welcome__container h1 {
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Nhãn input */
+.login__container h5,
+.signup__container h5 {
+  text-align: left;
+  margin: 15px 0 5px;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Input */
+.login__container input,
+.signup__container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.login__container input:focus,
+.signup__container input:focus {
+  outline: none;
+  border-color: #0077cc;
+}
+
+/* Nút login/signup */
+.login__signInButton,
+.signup__signInButton {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login__signInButton:hover,
+.signup__signInButton:hover {
+  background-color: #555;
+}
+
+/* Link đăng ký */
+.login__registerButton {
+  display: inline-block;
+  margin-top: 20px;
+  color: #0077cc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login__registerButton:hover {
+  text-decoration: underline;
+}
+
+/* Welcome page styles */
+.welcome__container {
+  text-align: center;
+}
+
+.welcome__container p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.welcome__actions {
+  margin-top: 20px;
+}
+
+.logout__button {
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout__button:hover {
+  background-color: #c82333;
+}
+
+/* Alert messages */
+.alert {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login__container,
+  .signup__container,
+  .welcome__container {
+    padding: 30px 20px;
+    margin: 0 10px;
+  }
+}
